@@ -19,6 +19,7 @@
             pixel.Green *= param;
             pixel.Red *= param;
 
+
             return pixel;
         }
     }
