@@ -1,1 +1,0 @@
-# ULearn_Photoshop
