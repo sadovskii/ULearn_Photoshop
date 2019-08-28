@@ -3,8 +3,16 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace MyPhotoshop.Data
 {
-    public class Pixel
+    public struct Pixel
     {
+        private double alpha;
+
+        public double Alpha
+        {
+            get { return alpha; }
+            set { alpha = Check(value); }
+        }
+
         private double red;
         public double Red
         {
@@ -26,15 +34,14 @@ namespace MyPhotoshop.Data
             set { blue = Check(value); }
         }
 
-        private readonly Func<int, int> aaa = x => x * x;
-
-        public Pixel(double red, double green, double blue)
+        public Pixel(double red, double green, double blue, double alpha)
         {
-            this.red = this.green = this.blue = 0;
+            this.alpha = this.red = this.green = this.blue = 0;
 
             Red = red;
             Green = green;
             Blue = blue;
+            Alpha = alpha;
         }
 
         public static Pixel operator* (Pixel pixel, double param)
@@ -57,15 +64,17 @@ namespace MyPhotoshop.Data
             return value;
         }
 
+        public Pixel Grayscale()
+        {
+            Red = Blue = Green = (red + green + blue) / 3;
+            return this;
+        }
+
         private double Check(double value)
         {
-            Func<int, int> aaa = x => x * x;
-
-            var b = aaa(2);
-
-
             if (value < 0 || value > 1) throw new ArgumentException();
             return value;
         }
+
     }
 }

@@ -11,10 +11,10 @@ namespace MyPhotoshop
     /// </summary>
     public class ParameterInfo
     {
-        public string Name;
-        public double DefaultValue;
-        public double MinValue = 0;
-        public double MaxValue = 1;
-        public double Increment;
+        public string Name { get; set; }
+        public double DefaultValue { get; set; }
+        public double MinValue { get; set; } = 0;
+        public double MaxValue { get; set; } = 1;
+        public double Increment { get; set; }
     }
 }

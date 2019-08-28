@@ -1,3 +1,4 @@
+using MyPhotoshop.Filters;
 using System;
 using System.Windows.Forms;
 
@@ -10,7 +11,8 @@ namespace MyPhotoshop
 		{
 			var window=new MainWindow();
 			window.AddFilter (new LighteningFilter());
-			Application.Run (window);
+            window.AddFilter(new GrayscaleFilter());
+            Application.Run (window);
 		}
 	}
 }
