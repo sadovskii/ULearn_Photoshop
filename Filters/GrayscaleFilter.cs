@@ -1,17 +1,13 @@
-﻿using System;
-using MyPhotoshop.Data;
+﻿using MyPhotoshop.Data;
 using MyPhotoshop.Filters.Parameters;
 
 namespace MyPhotoshop.Filters
 {
-    public class GrayscaleFilter : PixelFilter
+    public class GrayscaleFilter : PixelFilter<EmptyParameters>
     {
-        public GrayscaleFilter() : base(new EmptyParameters()) { }
-
-
         public override string ToString() => "Серый";
 
-        public override Pixel ChangeRule(Pixel pixel, IParameters parameters)
+        public override Pixel ChangeRule(Pixel pixel, EmptyParameters parameters)
         {
             return pixel.Grayscale();
         }

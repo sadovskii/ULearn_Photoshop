@@ -4,13 +4,11 @@ using MyPhotoshop.Filters.Parameters;
 
 namespace MyPhotoshop
 {
-	public class LighteningFilter : PixelFilter
-	{
-        public LighteningFilter() : base(new LighteningParameters()) { }
-
+	public class LighteningFilter : PixelFilter<LighteningParameters>
+    {
         public override string ToString () => "Осветление/затемнение";
 		
-        public override Pixel ChangeRule(Pixel pixel, IParameters parameters) => pixel * (parameters as LighteningParameters).Coefficient;
+        public override Pixel ChangeRule(Pixel pixel, LighteningParameters parameters) => pixel * parameters.Coefficient;
     }
 }
 

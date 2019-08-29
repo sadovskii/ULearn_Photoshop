@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MyPhotoshop.Data;
+﻿using MyPhotoshop.Data;
 using MyPhotoshop.Filters.Parameters;
 
 namespace MyPhotoshop.Filters
 {
-    public abstract class PixelFilter : ParametrizedFilter
+    public abstract class PixelFilter<T> : ParametrizedFilter<T> 
+        where T: IParameters, new()
     { 
-        public PixelFilter(IParameters parameters) : base(parameters) { }
-
         /// <summary>
         /// Этот метод принимает фотографию, которую надо обрабатывать, и численные значения всех параметров
         /// Длина массива parameters в точности равна длине массива, возвращаемого методом GetParameters
@@ -18,7 +13,7 @@ namespace MyPhotoshop.Filters
         /// <param name="original"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override Photo Process(Photo original, IParameters parameters)
+        public override Photo Process(Photo original, T parameters)
         {
             var result = new Photo(original.width, original.height);
 
@@ -29,6 +24,6 @@ namespace MyPhotoshop.Filters
             return result;
         }
 
-        public abstract Pixel ChangeRule(Pixel pixel, IParameters parameters);
+        public abstract Pixel ChangeRule(Pixel pixel, T parameters);
     }
 }

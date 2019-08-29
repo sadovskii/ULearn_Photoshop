@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MyPhotoshop.Filters.Parameters
+﻿namespace MyPhotoshop.Filters.Parameters
 {
-    public abstract class ParametrizedFilter : IFilter
+    public abstract class ParametrizedFilter<T> : IFilter  
+        where T: IParameters, new()
     {
-        private IParameters _parameters;
-
-        public ParametrizedFilter(IParameters parameters)
-        {
-            _parameters = parameters;
-        }
-
         public ParameterInfo[] GetParameters()
         {
-            return _parameters.GetParameters();
+            return new T().GetParameters();
         }
 
         public Photo Process(Photo original, double[] values)
         {
+            var _parameters = new T();
             _parameters.SetValues(values);
             return Process(original, _parameters);
         }
 
-        public abstract Photo Process(Photo original, IParameters parameters);
+        public abstract Photo Process(Photo original, T parameters);
     }
 }
